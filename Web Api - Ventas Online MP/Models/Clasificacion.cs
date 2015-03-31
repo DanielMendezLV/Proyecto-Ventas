@@ -11,6 +11,6 @@ namespace Web_Api___Ventas_Online_MP.Models
         [Key]
         public int ID { get; set; }
         [Required]
-        public String nombre { get; set; }
+        public String Nombre { get; set; }
     }
 }

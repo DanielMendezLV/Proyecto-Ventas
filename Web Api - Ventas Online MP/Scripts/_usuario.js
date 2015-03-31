@@ -62,7 +62,7 @@
         ajaxHelper(rolesUri + ID, 'GET').done(function (data) {
             self.rolDetail(data);
             self.rolDetailEdit(data);
-            alert(JSON.stringify(self.rolDetailEdit()));
+            //alert(JSON.stringify(self.rolDetailEdit()));
         });
     }
 
@@ -78,8 +78,6 @@
         ajaxHelper(usuariosUri + item.ID, 'GET').done(function (data) {
             self.upUsuario(data);
         });
-
-        
         ajaxHelper(rolesUri + item.RolId,'GET').done(function (data) {
             self.dato(data);
             self.getRol();
@@ -150,6 +148,7 @@
     self.editUsuario = function () {
         ajaxHelper(usuariosUri + self.upUsuario().ID, 'PUT',self.upUsuario()).done(function (item) {
             getAllUsuarios();
+            self.getUsuarioDetail(self.upUsuario());
         });
     }
 

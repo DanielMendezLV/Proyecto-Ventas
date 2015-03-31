@@ -15,7 +15,7 @@ namespace Web_Api___Ventas_Online_MP.Models
         [Required]
         public String Descripcion { get; set; }
         [Required]
-        public String Precio { get; set; }
+        public int Precio { get; set; }
         public int ClasificacionId { get; set; }
         public Clasificacion Clasificacion { get; set; }
     }

@@ -12,44 +12,44 @@ using Web_Api___Ventas_Online_MP.Models;
 
 namespace Web_Api___Ventas_Online_MP.Controllers
 {
-    public class RolsController : ApiController
+    public class ProductoesController : ApiController
     {
         private WebVentasContext db = new WebVentasContext();
 
-        // GET: api/Rols
-        public IQueryable<Rol> GetRols()
+        // GET: api/Productoes
+        public IQueryable<Producto> GetProductoes()
         {
-            return db.Rols;
+            return db.Productoes;
         }
 
-        // GET: api/Rols/5
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult GetRol(int id)
+        // GET: api/Productoes/5
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult GetProducto(int id)
         {
-            Rol rol = db.Rols.Find(id);
-            if (rol == null)
+            Producto producto = db.Productoes.Find(id);
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            return Ok(rol);
+            return Ok(producto);
         }
 
-        // PUT: api/Rols/5
+        // PUT: api/Productoes/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRol(int id, Rol rol)
+        public IHttpActionResult PutProducto(int id, Producto producto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != rol.ID)
+            if (id != producto.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(rol).State = EntityState.Modified;
+            db.Entry(producto).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RolExists(id))
+                if (!ProductoExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Rols
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult PostRol(Rol rol)
+        // POST: api/Productoes
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult PostProducto(Producto producto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Rols.Add(rol);
+            db.Productoes.Add(producto);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rol.ID }, rol);
+            return CreatedAtRoute("DefaultApi", new { id = producto.ID }, producto);
         }
 
-        // DELETE: api/Rols/5
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult DeleteRol(int id)
+        // DELETE: api/Productoes/5
+        [ResponseType(typeof(Producto))]
+        public IHttpActionResult DeleteProducto(int id)
         {
-            Rol rol = db.Rols.Find(id);
-            if (rol == null)
+            Producto producto = db.Productoes.Find(id);
+            if (producto == null)
             {
                 return NotFound();
             }
 
-            db.Rols.Remove(rol);
+            db.Productoes.Remove(producto);
             db.SaveChanges();
 
-            return Ok(rol);
+            return Ok(producto);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RolExists(int id)
+        private bool ProductoExists(int id)
         {
-            return db.Rols.Count(e => e.ID == id) > 0;
+            return db.Productoes.Count(e => e.ID == id) > 0;
         }
     }
 }

@@ -197,7 +197,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ClasificacionsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductoesController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -206,9 +208,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503281359124_PrimerMigracion.cs" />
-    <Compile Include="Migrations\201503281359124_PrimerMigracion.Designer.cs">
-      <DependentUpon>201503281359124_PrimerMigracion.cs</DependentUpon>
+    <Compile Include="Migrations\201503310407007_dbContextVentas.cs" />
+    <Compile Include="Migrations\201503310407007_dbContextVentas.Designer.cs">
+      <DependentUpon>201503310407007_dbContextVentas.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -219,6 +221,7 @@
     <Compile Include="Models\Rol.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\VContext.cs" />
+    <Compile Include="Models\WebVentasContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -299,8 +302,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503281359124_PrimerMigracion.resx">
-      <DependentUpon>201503281359124_PrimerMigracion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201503310407007_dbContextVentas.resx">
+      <DependentUpon>201503310407007_dbContextVentas.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,44 +12,44 @@ using Web_Api___Ventas_Online_MP.Models;
 
 namespace Web_Api___Ventas_Online_MP.Controllers
 {
-    public class RolsController : ApiController
+    public class ClasificacionsController : ApiController
     {
         private WebVentasContext db = new WebVentasContext();
 
-        // GET: api/Rols
-        public IQueryable<Rol> GetRols()
+        // GET: api/Clasificacions
+        public IQueryable<Clasificacion> GetClasificacions()
         {
-            return db.Rols;
+            return db.Clasificacions;
         }
 
-        // GET: api/Rols/5
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult GetRol(int id)
+        // GET: api/Clasificacions/5
+        [ResponseType(typeof(Clasificacion))]
+        public IHttpActionResult GetClasificacion(int id)
         {
-            Rol rol = db.Rols.Find(id);
-            if (rol == null)
+            Clasificacion clasificacion = db.Clasificacions.Find(id);
+            if (clasificacion == null)
             {
                 return NotFound();
             }
 
-            return Ok(rol);
+            return Ok(clasificacion);
         }
 
-        // PUT: api/Rols/5
+        // PUT: api/Clasificacions/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutRol(int id, Rol rol)
+        public IHttpActionResult PutClasificacion(int id, Clasificacion clasificacion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != rol.ID)
+            if (id != clasificacion.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(rol).State = EntityState.Modified;
+            db.Entry(clasificacion).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!RolExists(id))
+                if (!ClasificacionExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Rols
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult PostRol(Rol rol)
+        // POST: api/Clasificacions
+        [ResponseType(typeof(Clasificacion))]
+        public IHttpActionResult PostClasificacion(Clasificacion clasificacion)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Rols.Add(rol);
+            db.Clasificacions.Add(clasificacion);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = rol.ID }, rol);
+            return CreatedAtRoute("DefaultApi", new { id = clasificacion.ID }, clasificacion);
         }
 
-        // DELETE: api/Rols/5
-        [ResponseType(typeof(Rol))]
-        public IHttpActionResult DeleteRol(int id)
+        // DELETE: api/Clasificacions/5
+        [ResponseType(typeof(Clasificacion))]
+        public IHttpActionResult DeleteClasificacion(int id)
         {
-            Rol rol = db.Rols.Find(id);
-            if (rol == null)
+            Clasificacion clasificacion = db.Clasificacions.Find(id);
+            if (clasificacion == null)
             {
                 return NotFound();
             }
 
-            db.Rols.Remove(rol);
+            db.Clasificacions.Remove(clasificacion);
             db.SaveChanges();
 
-            return Ok(rol);
+            return Ok(clasificacion);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             base.Dispose(disposing);
         }
 
-        private bool RolExists(int id)
+        private bool ClasificacionExists(int id)
         {
-            return db.Rols.Count(e => e.ID == id) > 0;
+            return db.Clasificacions.Count(e => e.ID == id) > 0;
         }
     }
 }

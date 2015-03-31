@@ -4,5 +4,150 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+@section scripts {
+    @Scripts.Render("~/bundles/producto")
+}
+
+
 <h2>Productos</h2>
 
+<button type="button" class="btn btn-primary" data-bind="click: mostrarAgregar">Mostrar Agregar</button>
+<button type="button" class="btn btn-primary" data-bind="click: cerrarAgregar">Cerrar Agregar</button>
+
+<p></p>
+<div class="row">
+    <div class="col-md-4">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Productos</h2>
+                
+            </div>
+            
+            <div class="panel-body">
+                <ul class="list-unstyled" data-bind="foreach: listaProductos">
+                    <li>
+                        <span>Nombre : </span><span data-bind="text: Nombre"></span>&nbsp;<span data-bind="text: Precio"></span>
+                        <small></small>
+                        <small><a href="#" data-bind="click: $parent.getProductoDetail">Detalles</a></small>
+                        <small><a href="#" data-bind="click: $parent.getProductoDelete">Eliminar</a></small>
+                        <small><a href="#" data-bind="click: $parent.getProductoEditar">Editar</a></small>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+    </div>
+
+
+    <!-- ko if:productoDetail() -->
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Detalles</h2>
+            </div>
+            <table class="table">
+                <tr><td>Nombre</td><td data-bind="text: productoDetail().Nombre"></td></tr>
+                <tr><td>Precio</td><td data-bind="text: productoDetail().Precio"></td></tr>
+                <tr><td>Descripcion</td><td data-bind="text: productoDetail().Descripcion"></td></tr>
+                <tr><td>Categoria</td><td data-bind="text: clasificacionDetail().Nombre"></td></tr>
+
+            </table>
+            <a href="#" data-bind="click: getCloseDetail">Cerrar</a>
+        </div>
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if:menuAgregar() -->
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Agregar Usuario</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: addProducto">
+
+
+
+                    <div class="form-group frspace" data-bind="with: newProducto">
+                        
+                        <label for="inputnombre" class="col-sm-2 control-label">Nombre</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" step="any" class="form-control" id="inputnombre" data-bind="value:nombre" />
+                        </div>
+
+                        <label for="inputApellido" class="col-sm-2 control-label">Precio</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="inputApellido" data-bind="value:precio" />
+                        </div>
+
+                        <label for="inputDireccion" class="col-sm-2 control-label">Descripcion</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputDireccion" data-bind="value:descripcion" />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="inputCategoriaId" class="col-sm-2 control-label">Clasificacion</label>
+                        <div class="col-sm-10">
+                            <select data-bind="options:listaCategorias, optionsText: 'Nombre',optionsValue:'ID', value:newProducto.ClasificacionId.ID"></select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+
+
+    <!-- ko if:upProducto()-->
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Editar Usuario</h2>
+            </div>
+
+            <div class="panel-body">
+                <form class="form-horizontal" data-bind="submit: editarClasificacion">
+                    <div class="form-group frspace">
+                        <label for="inputnombre" class="col-sm-2 control-label">Nombre</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" step="any" class="form-control" id="inputnombre" data-bind="textinput:upProducto().Nombre" />
+                        </div>
+
+                        <label for="inputapellido" class="col-sm-2 control-label">Descripcion</label>
+
+                        <div class="col-sm-10">
+                            <input type="text" step="any" class="form-control" id="inputapellido" data-bind="textinput:upProducto().Descripcion" />
+                        </div>
+
+                        <label for="inputDireccion" class="col-sm-2 control-label">Precio</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="inputDireccion" data-bind="textinput:upProducto().Precio" />
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="inputCategoriaId" class="col-sm-2 control-label">Rol</label>
+                        <div class="col-sm-10">
+                            <select data-bind="options:clasificacionPlusOther, optionsText:'Nombre', optionsValue:'ID', value:upProducto().ClasificacionId"></select>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- /ko -->
+
+
+</div>

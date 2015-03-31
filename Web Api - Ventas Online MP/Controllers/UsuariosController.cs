@@ -14,7 +14,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
 {
     public class UsuariosController : ApiController
     {
-        private VContext db = new VContext();
+        private WebVentasContext db = new WebVentasContext();
 
         // GET: api/Usuarios
         public IQueryable<Usuario> GetUsuarios()

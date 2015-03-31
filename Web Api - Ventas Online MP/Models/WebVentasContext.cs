@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Web_Api___Ventas_Online_MP.Models
 {
-    public class VContext : DbContext
+    public class WebVentasContext : DbContext
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -15,15 +15,15 @@ namespace Web_Api___Ventas_Online_MP.Models
         // For more information refer to the documentation:
         // http://msdn.microsoft.com/en-us/data/jj591621.aspx
     
-        public VContext() : base("name=VContext")
+        public WebVentasContext() : base("name=WebVentasContext")
         {
         }
-
-        public System.Data.Entity.DbSet<Web_Api___Ventas_Online_MP.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<Web_Api___Ventas_Online_MP.Models.Rol> Rols { get; set; }
 
         public System.Data.Entity.DbSet<Web_Api___Ventas_Online_MP.Models.Clasificacion> Clasificacions { get; set; }
+
+        public System.Data.Entity.DbSet<Web_Api___Ventas_Online_MP.Models.Usuario> Usuarios { get; set; }
 
         public System.Data.Entity.DbSet<Web_Api___Ventas_Online_MP.Models.Producto> Productoes { get; set; }
     
