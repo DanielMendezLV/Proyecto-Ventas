@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web Api - Ventas Online MP", "Web Api - Ventas Online MP\Web Api - Ventas Online MP.csproj", "{87B50D12-ABF2-40A9-A6E6-52C5FC4F6146}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web Api - Ventas Online MP.Tests", "Web Api - Ventas Online MP.Tests\Web Api - Ventas Online MP.Tests.csproj", "{9BD5EDC8-008E-4F25-B1A6-988CE9B05888}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87B50D12-ABF2-40A9-A6E6-52C5FC4F6146}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87B50D12-ABF2-40A9-A6E6-52C5FC4F6146}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87B50D12-ABF2-40A9-A6E6-52C5FC4F6146}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87B50D12-ABF2-40A9-A6E6-52C5FC4F6146}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BD5EDC8-008E-4F25-B1A6-988CE9B05888}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BD5EDC8-008E-4F25-B1A6-988CE9B05888}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BD5EDC8-008E-4F25-B1A6-988CE9B05888}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BD5EDC8-008E-4F25-B1A6-988CE9B05888}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
