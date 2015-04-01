@@ -1,0 +1,71 @@
+﻿
+@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_LayoutVentas.cshtml";
+}
+
+@section scripts {
+    @Scripts.Render("~/bundles/ventas")
+}
+
+<hr />
+<button type="button" class="btn btn-default" data-bind="click: vaciarCarrito">Vaciar Carrito <i class="fa fa-trash"></i></button>
+<button type="button" class="btn btn-default" data-bind="click: cambiarMVCarrito">Ver Carrito <i class="fa fa-eye"></i></button>
+
+<!-- ko if:menuCarrito() -->
+<button type="button" class="btn btn-default" data-bind="click: cambiarMVPrincipal">Regresar Productos <i class="fa fa-arrow-circle-left"></i></button>
+<!-- /ko -->
+<!-- ko if:menuCarrito() -->
+<button type="button" class="btn btn-default">Realizar Compra</button>
+<!-- /ko -->
+
+
+<hr />
+<p>Total:  <b data-bind="text: totalCompra"></b></p>
+<h3><a href="#"><i class="fa fa-shopping-cart"> Carrito : </i><span data-bind="text:cantidadCarrito"></span></a> </h3>
+
+<!-- ko if:menuPrincipal() -->
+    <div class="row text-center" data-bind="foreach: listaProductos">
+        <div class="col-md-3 col-sm-6 hero-feature">
+            <div class="thumbnail">
+                <div class="caption">
+                    <h3><span data-bind="text: Nombre"></span></h3>
+                    <p><span data-bind="text: Descripcion"></span><p>
+                    <p><span>Precio: </span><span data-bind="text: Precio"></span><span>$</span><p>
+                    <p data-bind="click: $parent.sendCarrito">
+                        <a href="#" class="btn btn-primary"><i class="fa fa-cart-plus">+</i></a> <a href="#" class="btn btn-default">Mas</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- /ko -->
+
+
+<!-- ko if:menuCarrito() -->
+
+    <div class="table-responsive">
+        <table class="table">
+            <tr>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Precio</th>
+                <th>Cantidad</th>
+                <th>Eliminar</th>
+            </tr>
+            <tbody data-bind="foreach: listaCarrito">
+                <tr>
+                    <td><span data-bind="text: Nombre"></span></td>
+                    <td><span data-bind="text: Descripcion"></span></td>
+                    <td><span data-bind="text: Precio"></span></td>
+                    <td><span data-bind="text: Cantidad"></span></td>
+                    <td>
+                        <p data-bind="click: $parent.removeElementCarrito">
+                            <a href="#" class="btn btn-primary"><i class="fa fa-trash"></i></a>
+                        </p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!-- /ko -->

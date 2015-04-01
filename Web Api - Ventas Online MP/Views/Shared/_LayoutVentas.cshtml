@@ -1,0 +1,61 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Ventas/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body>
+    
+    <!-- Navigation -->
+    <div id="navigation">
+        <nav class="navbar navbar-custom" role="navigation">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse" id="menu">
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="#intro">Inicio</a></li>
+                                <li><a href="#about">Ofertas</a></li>
+                                <li><a href="#gallery">Registrate</a></li>
+                                <li><a href="#contact">Login</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.Navbar-collapse -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- /.container -->
+        </nav>
+    </div>
+    <!-- /Navigation -->  
+
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Ventas Online </p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

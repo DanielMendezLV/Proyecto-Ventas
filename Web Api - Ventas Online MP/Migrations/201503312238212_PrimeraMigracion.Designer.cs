@@ -7,13 +7,13 @@ namespace Web_Api___Ventas_Online_MP.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.1-30610")]
-    public sealed partial class PrimerMigracion : IMigrationMetadata
+    public sealed partial class PrimeraMigracion : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PrimerMigracion));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PrimeraMigracion));
         
         string IMigrationMetadata.Id
         {
-            get { return "201503281359124_PrimerMigracion"; }
+            get { return "201503312238212_PrimeraMigracion"; }
         }
         
         string IMigrationMetadata.Source

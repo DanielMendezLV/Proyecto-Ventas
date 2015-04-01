@@ -25,5 +25,8 @@ namespace Web_Api___Ventas_Online_MP.Models
 
         public int RolId { get; set; }
         public Rol Rol { get; set; }
+
+        public virtual ICollection<CompraProducto> ProductosUsuarios { get; set; }
+    
     }
 }

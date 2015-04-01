@@ -31,6 +31,14 @@ namespace Web_Api___Ventas_Online_MP
                 url:"{controller}/{action}/{id}",
                 defaults: new {controller = "VProductos", action="Productos", ir=UrlParameter.Optional}
             );
+
+            routes.MapRoute(
+                name: "Inicio",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "VHome", action = "Inicio", ir = UrlParameter.Optional }
+            );
+
+
         }
     }
 }

@@ -14,7 +14,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
 {
     public class RolsController : ApiController
     {
-        private WebVentasContext db = new WebVentasContext();
+        private ContextVentas1 db = new ContextVentas1();
 
         // GET: api/Rols
         public IQueryable<Rol> GetRols()

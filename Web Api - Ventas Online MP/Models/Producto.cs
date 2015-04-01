@@ -18,5 +18,6 @@ namespace Web_Api___Ventas_Online_MP.Models
         public int Precio { get; set; }
         public int ClasificacionId { get; set; }
         public Clasificacion Clasificacion { get; set; }
+        public virtual ICollection<CompraProducto> CompraProductos { get; set; }
     }
 }

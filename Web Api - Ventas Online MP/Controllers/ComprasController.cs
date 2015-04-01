@@ -12,44 +12,44 @@ using Web_Api___Ventas_Online_MP.Models;
 
 namespace Web_Api___Ventas_Online_MP.Controllers
 {
-    public class ClasificacionsController : ApiController
+    public class ComprasController : ApiController
     {
         private ContextVentas1 db = new ContextVentas1();
 
-        // GET: api/Clasificacions
-        public IQueryable<Clasificacion> GetClasificacions()
+        // GET: api/Compras
+        public IQueryable<Compra> GetCompras()
         {
-            return db.Clasificacions;
+            return db.Compras;
         }
 
-        // GET: api/Clasificacions/5
-        [ResponseType(typeof(Clasificacion))]
-        public IHttpActionResult GetClasificacion(int id)
+        // GET: api/Compras/5
+        [ResponseType(typeof(Compra))]
+        public IHttpActionResult GetCompra(int id)
         {
-            Clasificacion clasificacion = db.Clasificacions.Find(id);
-            if (clasificacion == null)
+            Compra compra = db.Compras.Find(id);
+            if (compra == null)
             {
                 return NotFound();
             }
 
-            return Ok(clasificacion);
+            return Ok(compra);
         }
 
-        // PUT: api/Clasificacions/5
+        // PUT: api/Compras/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutClasificacion(int id, Clasificacion clasificacion)
+        public IHttpActionResult PutCompra(int id, Compra compra)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != clasificacion.ID)
+            if (id != compra.ID)
             {
                 return BadRequest();
             }
 
-            db.Entry(clasificacion).State = EntityState.Modified;
+            db.Entry(compra).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ClasificacionExists(id))
+                if (!CompraExists(id))
                 {
                     return NotFound();
                 }
@@ -70,35 +70,35 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Clasificacions
-        [ResponseType(typeof(Clasificacion))]
-        public IHttpActionResult PostClasificacion(Clasificacion clasificacion)
+        // POST: api/Compras
+        [ResponseType(typeof(Compra))]
+        public IHttpActionResult PostCompra(Compra compra)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Clasificacions.Add(clasificacion);
+            db.Compras.Add(compra);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = clasificacion.ID }, clasificacion);
+            return CreatedAtRoute("DefaultApi", new { id = compra.ID }, compra);
         }
 
-        // DELETE: api/Clasificacions/5
-        [ResponseType(typeof(Clasificacion))]
-        public IHttpActionResult DeleteClasificacion(int id)
+        // DELETE: api/Compras/5
+        [ResponseType(typeof(Compra))]
+        public IHttpActionResult DeleteCompra(int id)
         {
-            Clasificacion clasificacion = db.Clasificacions.Find(id);
-            if (clasificacion == null)
+            Compra compra = db.Compras.Find(id);
+            if (compra == null)
             {
                 return NotFound();
             }
 
-            db.Clasificacions.Remove(clasificacion);
+            db.Compras.Remove(compra);
             db.SaveChanges();
 
-            return Ok(clasificacion);
+            return Ok(compra);
         }
 
         protected override void Dispose(bool disposing)
@@ -110,9 +110,9 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ClasificacionExists(int id)
+        private bool CompraExists(int id)
         {
-            return db.Clasificacions.Count(e => e.ID == id) > 0;
+            return db.Compras.Count(e => e.ID == id) > 0;
         }
     }
 }
