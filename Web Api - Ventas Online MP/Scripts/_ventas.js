@@ -68,29 +68,41 @@
 
 
     self.sendCarrito = function (item) {
-        // Si llega alert(item.ID);
-       var compraProducto = {
-            ID: ko.observable(item.ID),
-            Nombre: ko.observable(item.Nombre),
-            Cantidad: ko.observable(0),
-            Precio: ko.observable(item.Precio)
+        self.compraProducto = ko.observable(
+            {
+                ID: ko.observable(item.ID),
+                Nombre: ko.observable(item.Nombre),
+                Descripcion: ko.observable(item.Descripcion),
+                Cantidad: ko.observable(1),
+                Precio: ko.observable(item.Precio)
+            }
+        );
+
+        var cont = 0;
+        if (self.listaCarrito().length == 0) {
+            self.listaCarrito.push(self.compraProducto);
+            //alert("Entro vacio");
+        } else {
+            //alert("Entro lleno");
+            ko.utils.arrayForEach(self.listaCarrito(), function (item) {
+                //alert(item().ID());
+                //alert(self.compraProducto().ID());
+                if (item().ID() == self.compraProducto().ID()) {
+                    //alert("Entro comparación");
+                    var numero = item().Cantidad();
+                    item().Cantidad(numero + 1);
+                    //alert(item().Cantidad());
+                } else {
+                    cont++;
+                    if (cont == self.listaCarrito().length) {
+                        self.listaCarrito.push(self.compraProducto);
+                    }
+                }
+            });
+            
         }
-
-        alert(compraProducto.ID);
-
-        //if (self.listaCarrito().length == 0) {
-        //    self.listaCarrito.push(compraProducto);
-        //} else {
-        //    ko.utils.arrayForEach(self.listaCarrito(), function (item) {
-        //        if (item.ID == compraProducto.ID) {
-        //            item.Cantidad = item.Cantidad + 1;
-        //        }
-        //    });
-        //}
-
-       
-        //self.sumar();
-        //self.sumarCarrito();
+        self.sumar();
+        self.totalCarrito();
     }
 
     self.sumar = function () {
@@ -100,17 +112,17 @@
             self.cantidadCarrito(0);
         } else {
             ko.utils.arrayForEach(self.listaCarrito(), function (item) {
-                ++total;
+                total = total + item().Cantidad();
                 self.cantidadCarrito(total);
             });
         }
     }
 
-    self.sumarCarrito = function () {
+    self.totalCarrito = function () {
         var total = 0;
         ko.utils.arrayForEach(self.listaCarrito(), function (item) {
             //alert(item.Precio);
-            total += (item.Cantidad * item.Precio);
+            total += (item().Cantidad() * item().Precio());
             //alert(total);
         });
         self.totalCompra(total);
@@ -118,10 +130,26 @@
 
     
 
-    self.removeElementCarrito = function (item) {
-        self.listaCarrito.remove(item);
+    self.removeElementCarrito = function (itemLess) {
+        ko.utils.arrayForEach(self.listaCarrito(), function (item) {
+           // alert(itemLess.ID());
+            if (itemLess.ID() == item().ID()) {
+                if (item().Cantidad() == 1) {
+                    self.listaCarrito.remove(item);
+                    self.sumar();
+                    self.totalCarrito();
+                } else {
+                    total = item().Cantidad() - 1;
+                    item().Cantidad(total);
+                }
+            }
+           
+            //alert(self.cantidadCarrito(total));
+      });
+
+        //self.listaCarrito.remove(item);
         self.sumar();
-        self.sumarCarrito();
+        self.totalCarrito();
     }
 
     self.vaciarCarrito = function () {
@@ -131,7 +159,6 @@
     }
 
     
- 
 }
 
 ko.applyBindings(new ViewVentas());

@@ -20,13 +20,13 @@ namespace Web_Api___Ventas_Online_MP
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
+            bundles.Add(new StyleBundle("~/Content/css/styles").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css")
                       );
 
 
-            bundles.Add(new StyleBundle("~/Ventas/css").Include(
+            bundles.Add(new StyleBundle("~/Ventas/css/styles").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/style_1.css",
@@ -34,7 +34,7 @@ namespace Web_Api___Ventas_Online_MP
                       "~/Content/css/font-awesome.min.css")  
                       );
 
-
+     
 
             bundles.Add(new ScriptBundle("~/bundles/usuario").Include(
                    "~/Scripts/knockout-3.3.0.js",
