@@ -33,8 +33,7 @@ namespace Web_Api___Ventas_Online_MP
                       "~/Content/bootstrap-responsive.min.css",
                       "~/Content/css/font-awesome.min.css")  
                       );
-
-     
+           
 
             bundles.Add(new ScriptBundle("~/bundles/usuario").Include(
                    "~/Scripts/knockout-3.3.0.js",
@@ -48,8 +47,11 @@ namespace Web_Api___Ventas_Online_MP
             bundles.Add(new ScriptBundle("~/bundles/ventas").Include(
                    "~/Scripts/knockout-3.3.0.js",
                    "~/Scripts/_ventas.js"));
-           
-           
+
+            bundles.Add(new ScriptBundle("~/bundles/comprav").Include(
+                  "~/Scripts/knockout-3.3.0.js",
+                  "~/Scripts/_comprav.js"));
+
             // Para la depuración, establezca EnableOptimizations en false. Para obtener más información,
             // visite http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

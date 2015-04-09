@@ -38,6 +38,12 @@ namespace Web_Api___Ventas_Online_MP
                 defaults: new { controller = "VHome", action = "Inicio", ir = UrlParameter.Optional }
             );
 
+            routes.MapRoute(
+                name: "ResumenCompras",
+                url: "{controller}/{action}/{id}",
+                defaults: new { controller = "VCompras", action = "Compras", ir = UrlParameter.Optional }
+            );
+
 
         }
     }

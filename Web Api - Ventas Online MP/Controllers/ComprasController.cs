@@ -14,12 +14,17 @@ namespace Web_Api___Ventas_Online_MP.Controllers
 {
     public class ComprasController : ApiController
     {
-        private ContextVentas1 db = new ContextVentas1();
+        private VOContext db = new VOContext();
 
         // GET: api/Compras
         public IQueryable<Compra> GetCompras()
         {
+            foreach (var cd in db.Compras)
+            {
+                Console.WriteLine(cd.ID + cd.UsuarioId + cd.Total);
+            }
             return db.Compras;
+           
         }
 
         // GET: api/Compras/5

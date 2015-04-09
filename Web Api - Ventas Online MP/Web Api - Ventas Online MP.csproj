@@ -205,15 +205,16 @@
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Controllers\VComprasController.cs" />
     <Compile Include="Controllers\VHomeController.cs" />
     <Compile Include="Controllers\VProductosController.cs" />
     <Compile Include="Controllers\VUsuariosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201503312238212_PrimeraMigracion.cs" />
-    <Compile Include="Migrations\201503312238212_PrimeraMigracion.Designer.cs">
-      <DependentUpon>201503312238212_PrimeraMigracion.cs</DependentUpon>
+    <Compile Include="Migrations\201504060008569_PrimeraMigracion.cs" />
+    <Compile Include="Migrations\201504060008569_PrimeraMigracion.Designer.cs">
+      <DependentUpon>201504060008569_PrimeraMigracion.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\VContext.cs" />
     <Compile Include="Models\Compra.cs" />
+    <Compile Include="Models\VOContext.cs" />
     <Compile Include="Models\WebVentasContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
@@ -283,6 +285,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\_comprav.js" />
     <Content Include="Scripts\_producto.js" />
     <Content Include="Scripts\_usuario.js" />
     <Content Include="Scripts\_ventas.js" />
@@ -307,6 +310,7 @@
     <Content Include="Views\VProductos\Productos.cshtml" />
     <Content Include="Views\Shared\_LayoutVentas.cshtml" />
     <Content Include="Views\VHome\Inicio.cshtml" />
+    <Content Include="Views\VCompras\Compras.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,8 +323,8 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201503312238212_PrimeraMigracion.resx">
-      <DependentUpon>201503312238212_PrimeraMigracion.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504060008569_PrimeraMigracion.resx">
+      <DependentUpon>201504060008569_PrimeraMigracion.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

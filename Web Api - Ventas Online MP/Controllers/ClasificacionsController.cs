@@ -14,7 +14,7 @@ namespace Web_Api___Ventas_Online_MP.Controllers
 {
     public class ClasificacionsController : ApiController
     {
-        private ContextVentas1 db = new ContextVentas1();
+        private VOContext db = new VOContext();
 
         // GET: api/Clasificacions
         public IQueryable<Clasificacion> GetClasificacions()

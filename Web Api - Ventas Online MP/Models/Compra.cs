@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.ComponentModel.DataAnnotations;
+using Newtonsoft.Json;
+
 using Web_Api___Ventas_Online_MP.Models;
 
 namespace Web_Api___Ventas_Online_MP.Models
@@ -18,6 +20,8 @@ namespace Web_Api___Ventas_Online_MP.Models
         public int Total { get; set; }
         public int UsuarioId { get; set; }
         public Usuario Usuario { get; set; }
+        
+        [JsonIgnore]
         public virtual ICollection<CompraProducto> CompraProductos { get; set; }
     }
 }

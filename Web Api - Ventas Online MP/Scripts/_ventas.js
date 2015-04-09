@@ -68,6 +68,7 @@
 
 
     self.sendCarrito = function (item) {
+
         self.compraProducto = ko.observable(
             {
                 ID: ko.observable(item.ID),
