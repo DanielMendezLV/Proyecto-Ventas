@@ -8,6 +8,9 @@
     self.totalCompra = ko.observable();
     self.menuPrincipal = ko.observableArray();
     self.menuCarrito = ko.observableArray();
+    self.listaCompraProducto = ko.observableArray();
+    
+
 
 
     self.menuPrincipal(true);
@@ -28,18 +31,21 @@
 
     //Rutas
     var productosUri = "/api/Productoes/";
-    
+    var comprasUri = "/api/Compras/";
+    var detalleUri = "/api/RegistrarCompra/"
+
 
 
     //Ajax Helper
-    function ajaxHelper(uri, method, data) {
+    function ajaxHelper(uri, method,data) {
         return $.ajax({
             type: method,
             url: uri,
             dataType: 'json',
             contentType: 'application/json',
             //Strinfy convierte una cadena de tipo javascript a objetos tipo JSON
-            data: data ? JSON.stringify(data) : null
+            
+            data: data ? ko.toJSON(data) : null
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             self.error(errorThrown);
@@ -57,16 +63,7 @@
     getAllProductos();
 
 
-    // PLantillas
-    self.newCompraProducto = {
-        idProducto: ko.observable(),
-        nombre: ko.observable(),
-        cantidad: ko.observable(),
-        precio: ko.observable(),
-    }
-  
-
-
+ 
     self.sendCarrito = function (item) {
 
         self.compraProducto = ko.observable(
@@ -160,6 +157,74 @@
     }
 
     
+    //Agregar Compra
+
+
+    function formattedDate() {
+        var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+        //alert([month, day, year].join('/'));
+        return [month, day, year].join('-');
+       
+    }
+
+    self.agregarCompra = function () {
+       
+        //var element = {
+        //    //self.newCompra.UsuarioId()=1
+        //    UsuarioId: ko.observable(1),
+        //    Fecha: ko.observable(formattedDate()),
+        //    Total: ko.observable(self.totalCompra()),
+        //    Usuario: ko.observable(),
+        //}
+
+
+        //Si lo hace y envia correctamente
+        //ajaxHelper(comprasUri, 'POST', element).done(function (item) {
+          
+        //});
+
+        self.enviarDetalle();
+    }
+
+    self.enviarDetalle = function () {
+       
+        ko.utils.arrayForEach(self.listaCarrito(), function (item) {
+            //alert("Hola");
+            
+            //alert(item().Cantidad());
+            var compraPr = ko.observable(
+             {
+                 CompraId: ko.observable(1),
+                 ProductoId: ko.observable(item().ID()),
+                 Cantidad: ko.observable(item().Cantidad()),
+                 Precio: ko.observable(item().Precio())
+             }
+            );
+
+            self.listaCompraProducto.push(compraPr);
+        });
+
+
+        ajaxHelper(detalleUri, 'POST', self.listaCompraProducto).done(function (item) {
+            alert(ko.toJS(item));
+        });
+
+
+        //alert(ko.toJSON(self.listaCompraProducto));
+        //self.listaCompraProducto([]);
+        
+        
+    }
+
+
+
 }
 
 ko.applyBindings(new ViewVentas());

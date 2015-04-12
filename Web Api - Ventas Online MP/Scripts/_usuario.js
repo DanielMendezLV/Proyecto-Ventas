@@ -31,7 +31,7 @@
             dataType: 'json',
             contentType: 'application/json',
             //Strinfy convierte una cadena de tipo javascript a objetos tipo JSON
-            data: data ? JSON.stringify(data) : null
+            data: data ? (JSON.stringify(data)): null
 
         }).fail(function (jqXHR, textStatus, errorThrown) {
             self.error(errorThrown);
@@ -129,7 +129,7 @@
  
     self.addUsuario = function (formElement) {
         var usuario = {
-            RolId: self.newUsuario.RolId().ID,
+            RolId: self.newUsuario.RolId(),
             nombre: self.newUsuario.nombre(),
             apellido: self.newUsuario.apellido(),
             correo: self.newUsuario.correo(),
@@ -138,6 +138,7 @@
             Rol: self.newUsuario.Rol(),
         };
 
+        //alert(JSON.stringify(usuario));
         //AGREGA A LA BD LOS DATOS
         ajaxHelper(usuariosUri, 'POST', usuario).done(function (item) {
             //SE ACTUALIZA LA LISTA DE LOS CONTACTOS

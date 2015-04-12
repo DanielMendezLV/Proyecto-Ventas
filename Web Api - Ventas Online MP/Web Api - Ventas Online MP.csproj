@@ -202,6 +202,7 @@
     <Compile Include="Controllers\ComprasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoesController.cs" />
+    <Compile Include="Controllers\RegistrarCompraController.cs" />
     <Compile Include="Controllers\RolsController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
