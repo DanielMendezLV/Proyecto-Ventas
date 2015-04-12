@@ -22,6 +22,8 @@ namespace Web_Api___Ventas_Online_MP.Models
         public int telefono { get; set; }
         [Required]
         public String password { get; set; }
+        [Required]
+        public String nickname { get; set; }
 
         public int RolId { get; set; }
         public Rol Rol { get; set; }

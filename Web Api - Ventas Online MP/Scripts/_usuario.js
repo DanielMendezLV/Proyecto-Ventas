@@ -12,6 +12,9 @@
     self.rolDetailEdit = ko.observableArray();
     self.rolPlusOther = ko.observableArray();
     self.dato = ko.observableArray();
+    self.usuarioLogeado = ko.observableArray();
+    self.usuarioLogeado(null);
+
     // lo guardo en editar el dato si funciona
    
 
@@ -120,6 +123,7 @@
         correo: ko.observable(),
         telefono:ko.observable(),
         password: ko.observable(),
+        nickname:ko.observable(),
         RolId: ko.observable(),
         Rol: ko.observable(),
     }
@@ -132,6 +136,7 @@
             RolId: self.newUsuario.RolId(),
             nombre: self.newUsuario.nombre(),
             apellido: self.newUsuario.apellido(),
+            nickname: self.newUsuario.nickname(),
             correo: self.newUsuario.correo(),
             telefono: self.newUsuario.telefono(),
             password: self.newUsuario.password(),
@@ -154,7 +159,19 @@
     }
 
    
-  
+    self.CerrarSesion = function (item) {
+        eliminarCookie('usuario');
+        location.reload();
+    }
+
+    function cargarUsuario() {
+        var parsed = JSON.parse(leerCookie('usuario'));
+        if (parsed) {
+            self.usuarioLogeado(parsed);
+        }
+    }
+
+    cargarUsuario();
 }
 
 ko.applyBindings(new ViewUsuarios());

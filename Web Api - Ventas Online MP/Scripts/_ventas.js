@@ -9,7 +9,9 @@
     self.menuPrincipal = ko.observableArray();
     self.menuCarrito = ko.observableArray();
     self.listaCompraProducto = ko.observableArray();
-    
+    self.usuarioLogueado = ko.observableArray();
+    self.usuarioLogueado(null);
+
 
 
 
@@ -223,7 +225,36 @@
         
     }
 
+    var leerCookie = function (key) {
+        keyValue = document.cookie.match("(^|;) ?" + key + "=([^;]*)(;|$)");
+        if (keyValue) {
+            return keyValue[2];
+        } else {
+            return null;
+        }
+    }
 
+    var eliminarCookie = function (llave) {
+        return document.cookie = llave + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+    }
+
+    self.CerrarSesion = function (item) {
+        eliminarCookie('usuario');
+        location.reload();
+    }
+
+    function cargarUsuario() {
+        var parsed = JSON.parse(leerCookie('usuario'));
+        if (parsed) {
+            self.usuarioLogueado(parsed);
+        }
+    }
+
+
+  
+  
+
+    cargarUsuario();
 
 }
 

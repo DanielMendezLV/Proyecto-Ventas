@@ -52,6 +52,10 @@ namespace Web_Api___Ventas_Online_MP
                   "~/Scripts/knockout-3.3.0.js",
                   "~/Scripts/_comprav.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/login").Include(
+                  "~/Scripts/knockout-3.3.0.js",
+                  "~/Scripts/_login.js"));
+
             // Para la depuración, establezca EnableOptimizations en false. Para obtener más información,
             // visite http://go.microsoft.com/fwlink/?LinkId=301862
             BundleTable.EnableOptimizations = true;

@@ -8,9 +8,35 @@
     @Scripts.Render("~/bundles/ventas")
 }
 
+ 
+<!-- Header -->
+<header>
+    <div class="sticky-nav">
+       
+        <nav id="menu">
+            <ul id="menu-nav">
+                <!-- ko if:usuarioLogueado() -->
+                <li><a href="index.html#home-slider" class="external" data-bind="text:usuarioLogueado().nickname"></a></li>
+                <li><a href="index.html#work" class="external" data-bind="click: CerrarSesion">Salir</a></li>
+                <!-- /ko-->
+                <!-- ko if:usuarioLogueado()==null -->
+                <li><a href="index.html#home-slider" class="external">Login</a></li>
+                <li><a href="index.html#work" class="external">Registrate</a></li>
+                <!-- /ko-->
+            </ul>
+        </nav>
+
+    </div>
+</header>
+<!-- End Header -->
+
+@*<p class="bg-success" data-bind="text: usuarioLogueado().nickname"></p>*@
+
+
+
 <hr />
 <button type="button" class="btn btn-default" data-bind="click: vaciarCarrito">Vaciar Carrito <i class="fa fa-trash"></i></button>
-<button type="button" class="btn btn-default" data-bind="click: cambiarMVCarrito">Ver Carrito <i class="fa fa-eye"></i></button>
+<button type="button" class="btn btn-default" data-bind="click: cambiarMVCarrito">Ver Carrito</button>
 
 <!-- ko if:menuCarrito() -->
 <button type="button" class="btn btn-default" data-bind="click: cambiarMVPrincipal">Regresar Productos <i class="fa fa-arrow-circle-left"></i></button>

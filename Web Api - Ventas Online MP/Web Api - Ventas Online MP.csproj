@@ -217,6 +217,14 @@
     <Compile Include="Migrations\201504060008569_PrimeraMigracion.Designer.cs">
       <DependentUpon>201504060008569_PrimeraMigracion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504120607469_Nickname.cs" />
+    <Compile Include="Migrations\201504120607469_Nickname.Designer.cs">
+      <DependentUpon>201504120607469_Nickname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504120614130_Nicknames.cs" />
+    <Compile Include="Migrations\201504120614130_Nicknames.Designer.cs">
+      <DependentUpon>201504120614130_Nicknames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -287,6 +295,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_comprav.js" />
+    <Content Include="Scripts\_login.js" />
     <Content Include="Scripts\_producto.js" />
     <Content Include="Scripts\_usuario.js" />
     <Content Include="Scripts\_ventas.js" />
@@ -326,6 +335,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504060008569_PrimeraMigracion.resx">
       <DependentUpon>201504060008569_PrimeraMigracion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504120607469_Nickname.resx">
+      <DependentUpon>201504120607469_Nickname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504120614130_Nicknames.resx">
+      <DependentUpon>201504120614130_Nicknames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
