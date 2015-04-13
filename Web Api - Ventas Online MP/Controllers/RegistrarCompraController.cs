@@ -20,25 +20,14 @@ namespace Web_Api___Ventas_Online_MP.Controllers
         // GET: api/CompraProductoes/5
         public String PostRegistrarCompra(IEnumerable<CompraProducto> pList)
         {
-            int idUsuario=0;
-            Compra compra=null;
-            
+            //int idUsuario=0;
+            //Compra compra=null;
 
             foreach (CompraProducto comp in pList)
             {
-                idUsuario = comp.CompraId;
-                var ultimaCompra = from co in db.Compras where co.ID == db.Compras.Max(u => u.ID) select co;
-                foreach (var ob in ultimaCompra)
-                {
-                    compra = (Compra)ob;
-                    break;
-                }
-
-                if (compra != null)
-                {
-                    comp.CompraId = compra.ID;
-                    db.CompraProductoes.Add(comp);
-                }
+                
+                 db.CompraProductoes.Add(comp);
+                
             }
 
             try
@@ -47,12 +36,12 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             }
             catch (DbUpdateException)
             {
-                return (compra.ToString());
+                return ("Error");
 
             }
 
             // SI funciona la compra.ID;
-            return compra.ID.ToString();
+            return "Compra realizada con exito";
         }
 
         public string GetRegistrarCompra()

@@ -32,8 +32,7 @@
         });
     }
 
-    getAllUsuarios();
-
+    
 
     //Usuario Logear
 
@@ -53,24 +52,25 @@
 
         ko.utils.arrayForEach(self.listaUsuarios(), function (item) {
             //alert(item.nombre);
-            
-                if (item.nickname == usuarioL.NickName & item.password == usuarioL.Password) {
-                    verificar = true;
-                    self.usuarioLogueado(item)
-                    usuario = {
-                        UsuarioId:item.ID,
-                        RolId: item.RolId,
-                        nombre: item.nombre,
-                        apellido: item.apellido,
-                        nickname: item.nickname,
-                        correo: item.correo,
-                        telefono: item.telefono,
-                    }
-                    crearCookie('usuario', ko.toJSON(usuario));
-                    var parsed = JSON.parse(leerCookie('usuario'));
-                    self.usuarioLogueado(parsed);
+
+            if (item.nickname == usuarioL.NickName & item.password == usuarioL.Password) {
+                verificar = true;
+                self.usuarioLogueado(item)
+                usuario = {
+                    UsuarioId: item.ID,
+                    RolId: item.RolId,
+                    nombre: item.nombre,
+                    apellido: item.apellido,
+                    nickname: item.nickname,
+                    correo: item.correo,
+                    telefono: item.telefono,
                 }
-                
+                crearCookie('usuario', ko.toJSON(usuario));
+                alert(ko.toJSON(leerCookie('usuario')));
+                var parsed = JSON.parse(leerCookie('usuario'));
+                self.usuarioLogueado(parsed);
+            }
+
         });
         if (verificar) {
             document.location.assign('../VHome/Inicio');
@@ -82,11 +82,13 @@
 
     self.CerrarSesion = function (item) {
         self.eliminarCookie('usuario');
-        self.usuarioLogueado(null);
+        // SI llega alert("HOli");
+        //self.usuarioLogueado(null);
         //location.reload();
     }
 
     function cargarUsuario() {
+        alert(JSON.parse(leerCookie('usuario')));
         var parsed = JSON.parse(leerCookie('usuario'));
         if (parsed) {
             self.usuarioLogueado(parsed);
@@ -96,9 +98,11 @@
 
 
     var crearCookie = function (key, value) {
+        //Crea la cookie
+        //alert("cookie");
         expires = new Date();
-        expires.setTime(expires.getTime() + 31536000000); 
-        cookie = key + "=" + value + ";expires=" + expires.toUTCString();
+        expires.setTime(expires.getTime() + 31536000000);
+        cookie = key + "=" + value + ";expires=" + expires.toUTCString() + "; path=/";;
         return document.cookie = cookie;
     }
 
@@ -112,10 +116,18 @@
     }
 
     self.eliminarCookie = function (llave) {
-        return document.cookie = llave + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        // Si llega 
+        //alert(llave);
+        document.cookie = llave + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;' + ';path=/';
+        //alert(ko.toJS(document.cookie));
+        // imprime la cookie , esta sigue existiendoalert(ko.toJS(document.cookie));
+        //return document.cookie = 
+        location.reload();
     }
 
+    getAllUsuarios();
     cargarUsuario();
+  
 
 }
 

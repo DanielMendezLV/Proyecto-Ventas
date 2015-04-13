@@ -12,6 +12,7 @@
     self.menuPrincipal = ko.observableArray();
     self.menuCarrito = ko.observableArray();
     self.listaCompraProducto = ko.observableArray();
+    self.compraIdEs = ko.observableArray();
     self.usuarioLogueado = ko.observableArray();
     self.usuarioLogueado(null);
 
@@ -182,33 +183,39 @@
     self.agregarCompra = function () {
         //alert(self.usuarioLogueado().UsuarioId);
         //alert("HOlis");
-        if (self.usuarioLogueado() != null) {
-            var element = {
-                //self.newCompra.UsuarioId()=1
-                UsuarioId: ko.observable(self.usuarioLogueado().UsuarioId),
-                Fecha: ko.observable(formattedDate()),
-                Total: ko.observable(self.totalCompra()),
-                Usuario: ko.observable(),
+        if (self.listaCarrito().length != 0) {
+            if (self.usuarioLogueado() != null) {
+
+                var element = {
+                    //self.newCompra.UsuarioId()=1
+                    UsuarioId: ko.observable(self.usuarioLogueado().UsuarioId),
+                    Fecha: ko.observable(formattedDate()),
+                    Total: ko.observable(self.totalCompra()),
+                    Usuario: ko.observable(),
+                }
+                ajaxHelper(comprasUri, 'POST', element).done(function (item) {
+                    //alert(item.ID + "Holis");
+                    self.compraIdEs(item);
+                    self.enviarDetalle();
+                });
+                //alert("LLego bien hasta aca");
+
+            } else {
+                alert("Inicia Sesion");
             }
-            ajaxHelper(comprasUri, 'POST', element).done(function (item) {
-               
-            });
-            alert("LLego bien hasta aca");
-            self.enviarDetalle();
         } else {
-            alert("Inicia Sesion");
-        }
-        
+            alert("No tienes ningun producto en carrito")
+        }   
     }
 
     self.enviarDetalle = function () {
-       
+        //alert(self.compraIdEs().ID);
         ko.utils.arrayForEach(self.listaCarrito(), function (item) {
             var compraPr = ko.observable(
              {
                  //Aca el compra ID es un campo erroneo ya que en el envio el Id del 
                  //Usuario logueado con el fin de realizar una consulta en el controlador
-                 CompraId: ko.observable(self.usuarioLogueado().UsuarioId),
+                 CompraId: ko.observable(self.compraIdEs().ID),
                  ProductoId: ko.observable(item().ID()),
                  Cantidad: ko.observable(item().Cantidad()),
                  Precio: ko.observable(item().Precio())
