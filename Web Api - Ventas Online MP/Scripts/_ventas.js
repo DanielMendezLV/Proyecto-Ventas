@@ -4,6 +4,9 @@
     self.listaProductos = ko.observableArray();
     self.listaCarrito = ko.observableArray();
     self.cantidadCarrito = ko.observable();
+    self.listaUsuarios = ko.observableArray();
+    self.usuarioLogueado = ko.observableArray();
+    self.usuarioLogueado(null);
     self.selectedView = ko.observable("principal");
     self.totalCompra = ko.observable();
     self.menuPrincipal = ko.observableArray();
@@ -35,7 +38,7 @@
     var productosUri = "/api/Productoes/";
     var comprasUri = "/api/Compras/";
     var detalleUri = "/api/RegistrarCompra/"
-
+    var usuariosUri = '/api/Usuarios/';
 
 
     //Ajax Helper
@@ -177,33 +180,35 @@
     }
 
     self.agregarCompra = function () {
-       
-        //var element = {
-        //    //self.newCompra.UsuarioId()=1
-        //    UsuarioId: ko.observable(1),
-        //    Fecha: ko.observable(formattedDate()),
-        //    Total: ko.observable(self.totalCompra()),
-        //    Usuario: ko.observable(),
-        //}
-
-
-        //Si lo hace y envia correctamente
-        //ajaxHelper(comprasUri, 'POST', element).done(function (item) {
-          
-        //});
-
-        self.enviarDetalle();
+        //alert(self.usuarioLogueado().UsuarioId);
+        //alert("HOlis");
+        if (self.usuarioLogueado() != null) {
+            var element = {
+                //self.newCompra.UsuarioId()=1
+                UsuarioId: ko.observable(self.usuarioLogueado().UsuarioId),
+                Fecha: ko.observable(formattedDate()),
+                Total: ko.observable(self.totalCompra()),
+                Usuario: ko.observable(),
+            }
+            ajaxHelper(comprasUri, 'POST', element).done(function (item) {
+               
+            });
+            alert("LLego bien hasta aca");
+            self.enviarDetalle();
+        } else {
+            alert("Inicia Sesion");
+        }
+        
     }
 
     self.enviarDetalle = function () {
        
         ko.utils.arrayForEach(self.listaCarrito(), function (item) {
-            //alert("Hola");
-            
-            //alert(item().Cantidad());
             var compraPr = ko.observable(
              {
-                 CompraId: ko.observable(1),
+                 //Aca el compra ID es un campo erroneo ya que en el envio el Id del 
+                 //Usuario logueado con el fin de realizar una consulta en el controlador
+                 CompraId: ko.observable(self.usuarioLogueado().UsuarioId),
                  ProductoId: ko.observable(item().ID()),
                  Cantidad: ko.observable(item().Cantidad()),
                  Precio: ko.observable(item().Precio())
@@ -217,12 +222,91 @@
         ajaxHelper(detalleUri, 'POST', self.listaCompraProducto).done(function (item) {
             alert(ko.toJS(item));
         });
+    }
+
+   
 
 
-        //alert(ko.toJSON(self.listaCompraProducto));
-        //self.listaCompraProducto([]);
-        
-        
+    //Obtiene usuarios
+    function getAllUsuarios() {
+        ajaxHelper(usuariosUri, 'GET').done(function (data) {
+            self.listaUsuarios(data);
+        });
+    }
+
+    getAllUsuarios();
+
+
+    //Usuario Logear
+
+    self.usuarioLogear = {
+        NickName: ko.observable(),
+        Password: ko.observable()
+    }
+
+
+    var user;
+    self.Logear = function (formElement) {
+        var usuarioL = {
+            NickName: self.usuarioLogear.NickName(),
+            Password: self.usuarioLogear.Password()
+        }
+        verificar = false;
+
+        ko.utils.arrayForEach(self.listaUsuarios(), function (item) {
+            //alert(item.nombre);
+
+            if (item.nickname == usuarioL.NickName & item.password == usuarioL.Password) {
+                verificar = true;
+                self.usuarioLogueado(item)
+                usuario = {
+                    UsuarioId: item.ID,
+                    RolId: item.RolId,
+                    nombre: item.nombre,
+                    apellido: item.apellido,
+                    nickname: item.nickname,
+                    correo: item.correo,
+                    telefono: item.telefono,
+                }
+                crearCookie('usuario', ko.toJSON(usuario));
+                alert(ko.toJSON(leerCookie('usuario')));
+                var parsed = JSON.parse(leerCookie('usuario'));
+                self.usuarioLogueado(parsed);
+            }
+
+        });
+        if (verificar) {
+            document.location.assign('../VHome/Inicio');
+        } else {
+            alert('Verifique sus credenciales');
+        }
+
+    }
+
+    self.CerrarSesion = function (item) {
+        self.eliminarCookie('usuario');
+        // SI llega alert("HOli");
+        //self.usuarioLogueado(null);
+        //location.reload();
+    }
+
+    function cargarUsuario() {
+        alert(JSON.parse(leerCookie('usuario')));
+        var parsed = JSON.parse(leerCookie('usuario'));
+        if (parsed) {
+            self.usuarioLogueado(parsed);
+        }
+    }
+
+
+
+    var crearCookie = function (key, value) {
+        //Crea la cookie
+        //alert("cookie");
+        expires = new Date();
+        expires.setTime(expires.getTime() + 31536000000);
+        cookie = key + "=" + value + ";expires=" + expires.toUTCString()+"; path=/";;
+        return document.cookie = cookie;
     }
 
     var leerCookie = function (key) {
@@ -234,25 +318,15 @@
         }
     }
 
-    var eliminarCookie = function (llave) {
-        return document.cookie = llave + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    }
-
-    self.CerrarSesion = function (item) {
-        eliminarCookie('usuario');
+    self.eliminarCookie = function (llave) {
+        // Si llega 
+        //alert(llave);
+        document.cookie = llave + '=;expires=Thu, 01 Jan 1970 00:00:01 GMT;' + ';path=/';
+        //alert(ko.toJS(document.cookie));
+        // imprime la cookie , esta sigue existiendoalert(ko.toJS(document.cookie));
+        //return document.cookie = 
         location.reload();
     }
-
-    function cargarUsuario() {
-        var parsed = JSON.parse(leerCookie('usuario'));
-        if (parsed) {
-            self.usuarioLogueado(parsed);
-        }
-    }
-
-
-  
-  
 
     cargarUsuario();
 

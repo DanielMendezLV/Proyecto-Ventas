@@ -16,12 +16,11 @@
         <nav id="menu">
             <ul id="menu-nav">
                 <!-- ko if:usuarioLogueado() -->
-                <li><a href="index.html#home-slider" class="external" data-bind="text:usuarioLogueado().nickname"></a></li>
-                <li><a href="index.html#work" class="external" data-bind="click: CerrarSesion">Salir</a></li>
+                <li><a href="#" class="external" data-bind="text:usuarioLogueado().nickname"></a></li>
+                <li><a href="#" class="external" data-bind="click: CerrarSesion">Salir</a></li>
                 <!-- /ko-->
                 <!-- ko if:usuarioLogueado()==null -->
-                <li><a href="index.html#home-slider" class="external">Login</a></li>
-                <li><a href="index.html#work" class="external">Registrate</a></li>
+                <li><a href="/VUsuarios/Login" class="external">Login</a></li>
                 <!-- /ko-->
             </ul>
         </nav>
@@ -95,3 +94,4 @@
         </table>
     </div>
 <!-- /ko -->
+

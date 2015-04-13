@@ -73,7 +73,7 @@
                 
         });
         if (verificar) {
-            document.location.assign('VHome/Inicio');
+            document.location.assign('../VHome/Inicio');
         } else {
             alert('Verifique sus credenciales');
         }

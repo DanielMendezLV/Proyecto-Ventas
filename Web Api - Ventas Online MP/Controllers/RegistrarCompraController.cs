@@ -27,27 +27,32 @@ namespace Web_Api___Ventas_Online_MP.Controllers
             foreach (CompraProducto comp in pList)
             {
                 idUsuario = comp.CompraId;
-                var ultimaCompra = from co in db.Compras where co.ID == db.Compras.Max(u => u.ID) && co.UsuarioId == idUsuario select co;
+                var ultimaCompra = from co in db.Compras where co.ID == db.Compras.Max(u => u.ID) select co;
                 foreach (var ob in ultimaCompra)
                 {
                     compra = (Compra)ob;
+                    break;
                 }
 
-                comp.CompraId = compra.ID;
-                db.CompraProductoes.Add(comp);
-
-                try
+                if (compra != null)
                 {
-                    db.SaveChanges();
-                }
-                catch (DbUpdateException)
-                {
-                    return "Error en la base de datos";
-                   
+                    comp.CompraId = compra.ID;
+                    db.CompraProductoes.Add(comp);
                 }
             }
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                return (compra.ToString());
+
+            }
+
             // SI funciona la compra.ID;
-            return "OK ";
+            return compra.ID.ToString();
         }
 
         public string GetRegistrarCompra()
